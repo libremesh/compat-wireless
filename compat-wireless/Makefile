@@ -10,14 +10,15 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=mac80211
 
-PKG_VERSION:=2016-10-08
+PKG_VERSION:=3016-10-08
+PKG_REAL_VERSION:=2016-10-08
 PKG_RELEASE:=1
 PKG_SOURCE_URL:=http://mirror2.openwrt.org/sources
 PKG_BACKPORT_VERSION:=
 PKG_HASH:=4f6350e3b75815060bfdf47ef266ad613c7bfea5b7b1dc4552dee69e1bebe4fb
 
-PKG_SOURCE:=compat-wireless-$(PKG_VERSION)$(PKG_BACKPORT_VERSION).tar.bz2
-PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/compat-wireless-$(PKG_VERSION)
+PKG_SOURCE:=compat-wireless-$(PKG_REAL_VERSION)$(PKG_BACKPORT_VERSION).tar.bz2
+PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/compat-wireless-$(PKG_REAL_VERSION)
 PKG_BUILD_PARALLEL:=1
 
 PKG_MAINTAINER:=Felix Fietkau <nbd@nbd.name>
@@ -1667,7 +1668,7 @@ define Build/Prepare
 		$(PKG_BUILD_DIR)/include/net/ieee80211.h \
 		$(PKG_BUILD_DIR)/backport-include/linux/bcm47xx_nvram.h
 
-	echo 'compat-wireless-$(PKG_VERSION)-$(PKG_RELEASE)-$(REVISION)' > $(PKG_BUILD_DIR)/compat_version
+	echo 'compat-wireless-$(PKG_REAL_VERSION)-$(PKG_RELEASE)-$(REVISION)' > $(PKG_BUILD_DIR)/compat_version
 	$(CP) ./files/regdb.txt $(PKG_BUILD_DIR)/net/wireless/db.txt
 endef
 
